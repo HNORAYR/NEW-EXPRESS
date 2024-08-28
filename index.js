@@ -22,6 +22,16 @@ app.post('/products', async(req, res) => {
     await collection.insertOne({name: name, price: price, color: color, wight: wight});
     res.send(`Received data - Name: ${name}, Price: ${price}, Color: ${color}, Wight: ${wight}`);
   })
+app.delete('/products/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const index = products.findIndex(products => products.id === id);
+    if (index !== -1) {
+      items.splice(index, 1);
+      res.status(200).json({ message: `Item ${id} deleted.` });
+    } else {
+      res.status(404).json({ message: 'Item not found.' });
+    }
+  });
 app.listen(3017,() => console.log("Server http://localhost:3017 is ready"));
 
 
