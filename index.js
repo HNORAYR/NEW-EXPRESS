@@ -19,7 +19,7 @@ app.get('/products', async(req, res) => {
 app.post('/products', async(req, res) => {
     const {name, price} = req.body;
     const collection = db.collection("products");
-    await collection.insertOne({name: name, price: price});
+    await collection.insertOne({name: name, price: price, color: color, wight: wight});
     res.send(`Received data - Name: ${name}, Price: ${price}, Color: ${Color}, Wight: ${Wight}`);
   })
 app.listen(3017,() => console.log("Server http://localhost:3017 is ready"));
